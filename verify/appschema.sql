@@ -2,6 +2,9 @@
 
 BEGIN;
 
-SELECT 1/COUNT(*) FROM information_schema.schemata WHERE schema_name = 'flipr';
+DO $$
+	BEGIN
+		   ASSERT (SELECT has_schema_privilege('flipr', 'usage'));
+	END $$;
 
 ROLLBACK;
